@@ -8,7 +8,7 @@ namespace TuringMachines
 {
     public class Head
     {
-        public const char Blank = '_';
+        public const char Blank = 'b';
         public List<char> Tape { get; set; }
         public int HeadPosition { get; set; }
 

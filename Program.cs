@@ -7,7 +7,8 @@ namespace TuringMachines
         static void Main(string[] args)
         {
             //OneTapeTuringMachine();
-            MultiTapeTuringMachine();
+            //MultiTapeTuringMachine();
+            NedeteminedTuringMachine();
         }
 
         static void OneTapeTuringMachine()
@@ -91,7 +92,14 @@ namespace TuringMachines
             mtm.Run();
             Console.WriteLine("Result: {0}", mtm.Heads[2]);
             Console.ReadLine();
+        }
 
+        static void NedeteminedTuringMachine()
+        {
+            NedeterminedTMachine ntm = new NedeterminedTMachine(
+                0, new List<Head> { new Head(new List<char>("100101000"), 0), new Head(new List<char>("b"), 0), new Head(new List<char>("b"), 0) },
+                NedeterminedTransitionsTable.MyTask());
+            ntm.Run();
         }
     }
 }

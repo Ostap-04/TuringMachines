@@ -48,9 +48,9 @@ namespace TuringMachines
         public char[] Read { get; }
         public char[] Write { get; }
         public HeadDirection[] HeadDirection { get; }
-        public List<int> NextState { get; }
+        public int[] NextState { get; }
 
-        public NedeterminedTransition(int initialState, char[] toRead, char[] toWrite, HeadDirection[] headDirection, List<int> nextState)
+        public NedeterminedTransition(int initialState, char[] toRead, char[] toWrite, HeadDirection[] headDirection, int[] nextState)
         {
             InitialState = initialState;
             Read = toRead;
