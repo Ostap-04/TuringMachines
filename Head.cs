@@ -18,6 +18,11 @@ namespace TuringMachines
             HeadPosition = headPosition;
         }
 
+        public Head(Head other) {
+            Tape = new List<char>(other.Tape);
+            HeadPosition = other.HeadPosition;
+        }
+
         public void Write(char toWrite)
         {
             Tape[HeadPosition] = toWrite;

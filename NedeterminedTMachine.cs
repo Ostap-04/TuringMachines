@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 
 namespace TuringMachines
 {
@@ -36,10 +38,10 @@ namespace TuringMachines
                         Heads[1].Move(transition.HeadDirection[1]);
                         Heads[2].Write(transition.Write[2]);
                         Heads[2].Move(transition.HeadDirection[2]);
-                        NedeterminedTMachine ntm1 = new NedeterminedTMachine(transition.NextState[0], new List<Head> { Heads[0], Heads[1], Heads[2] }, TransitionTable);
+                        NedeterminedTMachine ntm1 = new NedeterminedTMachine(transition.NextState[0], new List<Head> { new Head(Heads[0]), new Head(Heads[1]), new Head(Heads[2]) }, TransitionTable);
                         //ntm1.Run();
 
-                        NedeterminedTMachine ntm2 = new NedeterminedTMachine(transition.NextState[1], new List<Head> { Heads[0], Heads[1], Heads[2] }, TransitionTable);
+                        NedeterminedTMachine ntm2 = new NedeterminedTMachine(transition.NextState[1], new List<Head> { new Head(Heads[0]), new Head(Heads[1]), new Head(Heads[2]) }, TransitionTable);
                         //ntm2.Run();
                         List<NedeterminedTMachine> m = new List<NedeterminedTMachine> { ntm1, ntm2};
                         var tasks = new Task[2];
@@ -48,6 +50,7 @@ namespace TuringMachines
                             tasks[i] = Task.Run(m[i].Run);
                         }
                     }
+
                     else 
                     {
                         State = transition.NextState[0];
@@ -64,7 +67,7 @@ namespace TuringMachines
 
         }
 
-        public NedeterminedTMachine Run()
+        public async Task  Run()
         {
             NedeterminedTMachine m = this;
             int stepCounter = 1;
@@ -79,7 +82,7 @@ namespace TuringMachines
                 m.Step();
                 ++stepCounter;
             }
-            return m;
+            //return m;
         }
 
         public void ShutDown()

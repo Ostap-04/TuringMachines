@@ -1,4 +1,5 @@
-﻿using System.Threading.Channels;
+﻿using System.Diagnostics;
+using System.Threading.Channels;
 
 namespace TuringMachines
 {
@@ -8,6 +9,7 @@ namespace TuringMachines
         {
             //OneTapeTuringMachine();
             //MultiTapeTuringMachine();
+            
             NedeteminedTuringMachine();
         }
 
